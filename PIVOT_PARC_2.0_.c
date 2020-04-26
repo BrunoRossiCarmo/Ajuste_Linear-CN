@@ -17,11 +17,11 @@ float max_pivo(float matriz[][9], int linha){
 		}
 		f++;
 	}
-	printf("\nO valor do PivÙ ser·: %.0f\n", pivo);
+	printf("\nO valor do Piv√¥ ser√°: %.0f\n", pivo);
 	return pivo;
 }
 
-//------------Fazer-SubtituiÁ„o-de-Linhas
+//------------Fazer-Subtitui√ß√£o-de-Linhas
 void substitut(float matriz[][9],int pivo){
 	int i= 0;
 	int c;      //--------------> Carga de Valor
@@ -42,8 +42,8 @@ int main(){
 	//--------------Matriz------------------//
 	int i = 8; //----------------> Oito Linhas
 	int j = 9; //----------------> Nove Colunas
-	float matriz[i][j]; //---------> Matriz que Iremos realizar o MÈtodo de Gauss com Pivotamento Parcial
-	int k = i-1; //--------------> IteraÁıes
+	float matriz[i][j]; //---------> Matriz que Iremos realizar o M√©todo de Gauss com Pivotamento Parcial
+	int k = i-1; //--------------> Itera√ß√µes
 	setlocale(LC_ALL,"");
 	
 	//----------Abetura-de-Arquivo---------//
@@ -53,9 +53,9 @@ int main(){
     	printf("Erro ao abrir arquivo!\n"); 
   	}
   	
-  	//--------Leitura-de-Vari·veis-----------//
-  	int cont;    //---------------> Contador para LaÁo de RepetiÁ„o
-  	int cont2;  //----------------> Contador para LaÁo de RepetiÁ„o
+  	//--------Leitura-de-Vari√°veis-----------//
+  	int cont;    //---------------> Contador para La√ßo de Repeti√ß√£o
+  	int cont2;  //----------------> Contador para La√ßo de Repeti√ß√£o
   	rewind(file);
   	
   	//-----------------------Lendo-a-Matriz-------------------------//
