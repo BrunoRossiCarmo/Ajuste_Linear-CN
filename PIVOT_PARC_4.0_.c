@@ -129,7 +129,7 @@ int main(){
 	printf("\n");
 	for (cont = 0; cont < i; cont++){
 		for(cont2 = 0; cont2 < j ; cont2++){
-			printf(" %.0f ", matriz[cont][cont2]);
+			printf(" %.1f ", matriz[cont][cont2]);
 		}
 		printf("\n");
 	}
