@@ -1,4 +1,4 @@
-//tts Bruno Rossi disse: Calma que vou ajustar algumas coisas ainda pra evitar fazer corrid„o e parecer algo lÛgico!
+//tts Bruno Rossi disse: Calma que vou ajustar algumas coisas ainda pra evitar fazer corrid√£o e parecer algo l√≥gico!
 
 
 #include<stdio.h>
@@ -20,12 +20,12 @@ float max_pivo(float matriz[][9], int linha){
 		}
 		f++;
 	}
-	printf("\nO valor do PivÙ ser·: %.0f\n", pivo);
+	printf("\nO valor do Piv√¥ ser√°: %.0f\n", pivo);
 	return pivo;
 }
 //-------------------------------------------------//
 
-//------------Fazer-SubtituiÁ„o-de-Linhas--------------//
+//------------Fazer-Subtitui√ß√£o-de-Linhas--------------//
 void substitut(float matriz[][9],float pivo){
 	int i= 0;
 	int c;      //--------------> Carga de Valor
@@ -44,7 +44,7 @@ void substitut(float matriz[][9],float pivo){
 //------------------------------------------------------//
 
 //------------Realizar-Processo-----------------//
-void do_it(float matriz[][9], int linha, int coluna, float pivo, int inicio){  //---------------->Essa funÁ„o realiza a troca de termos nas linhas utilizando mÈtodo do pivotamento parcial
+void do_it(float matriz[][9], int linha, int coluna, float pivo, int inicio){  //---------------->Essa fun√ß√£o realiza a troca de termos nas linhas utilizando m√©todo do pivotamento parcial
 	int cont = 1;
 	int cont2 = 0;
 	int pass;      //-------------> Armazenador
@@ -70,8 +70,8 @@ int main(){
 	//--------------Matriz------------------//
 	int i = 8; //----------------> Oito Linhas
 	int j = 9; //----------------> Nove Colunas
-	float matriz[i][j]; //---------> Matriz que Iremos realizar o MÈtodo de Gauss com Pivotamento Parcial
-	int k = i-1; //--------------> IteraÁıes
+	float matriz[i][j]; //---------> Matriz que Iremos realizar o M√©todo de Gauss com Pivotamento Parcial
+	int k = i-1; //--------------> Itera√ß√µes
 	setlocale(LC_ALL,"");
 	//--------------------------------------//
 	
@@ -83,9 +83,9 @@ int main(){
   	}
   	//------------------------------------//
   	
-  	//--------Leitura-de-Vari·veis-----------//
-  	int cont;    //---------------> Contador para LaÁo de RepetiÁ„o
-  	int cont2;  //----------------> Contador para LaÁo de RepetiÁ„o
+  	//--------Leitura-de-Vari√°veis-----------//
+  	int cont;    //---------------> Contador para La√ßo de Repeti√ß√£o
+  	int cont2;  //----------------> Contador para La√ßo de Repeti√ß√£o
   	rewind(file);
   	//---------------------------------------//
   	
@@ -120,7 +120,7 @@ int main(){
 	}
 	//--------------------------------------------------------------//
 	
-	//--------------Primeira-IteraÁ„o---------------------//
+	//--------------Primeira-Itera√ß√£o---------------------//
 		do_it(matriz, i, 0, pivo, 0);
 
 	//----------------------------------------------------//
