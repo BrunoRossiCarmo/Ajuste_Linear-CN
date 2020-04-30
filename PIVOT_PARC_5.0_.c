@@ -1,4 +1,4 @@
-//tts Bruno Rossi disse: Calma que vou ajustar algumas coisas ainda pra evitar fazer corrid„o e parecer algo lÛgico!
+//tts Bruno Rossi disse: Calma que vou ajustar algumas coisas ainda pra evitar fazer corrid√£o e parecer algo l√≥gico!
 
 
 #include<stdio.h>
@@ -7,20 +7,20 @@
 #include<locale.h>
 
 
-//------------Fazer-SubtituiÁ„o-de-Linhas/Encontrar-Pivo--------------//
+//------------Fazer-Subtitui√ß√£o-de-Linhas/Encontrar-Pivo--------------//
 void substitut(double matriz[][9], int linha, int inicio_l, int inicio_c, int armazenador){
-	double c;                  //------------> Carga ˙til
-	int i;                 //-------------> Contador de AuxÌlio
+	double c;                  //------------> Carga √∫til
+	int i;                 //-------------> Contador de Aux√≠lio
 	double constante;      //------------->  Constante da Linha = Linha_de_Baixo/pivo
 	int contador;        //---------------> Contador de Coluna
-	int som=inicio_l;        //--------------->  Somador ˙til para encontrar linha
+	int som=inicio_l;        //--------------->  Somador √∫til para encontrar linha
 	double pivo = 0;
 	
 	//-------------Encontra-o-Pivo------------------//
 	for(i = inicio_l; i<linha; i++){
-		if(fabs(matriz[i][inicio_c])>(fabs(pivo))){             //Se |matriz[0,1,...7][0,1,...7]| > |pivo|, o elemento dessa posiÁ„o se torna pivo
+		if(fabs(matriz[i][inicio_c])>(fabs(pivo))){             //Se |matriz[0,1,...7][0,1,...7]| > |pivo|, o elemento dessa posi√ß√£o se torna pivo
 			pivo = matriz[i][inicio_c]; 						//pivo = matriz[0,1,...,7][0,1,...,n]
-			printf("\n|O valor do pivo È: %lf|\n", pivo);       
+			printf("\n|O valor do pivo √©: %lf|\n", pivo);       
 		}
 	}
 	
@@ -37,12 +37,12 @@ void substitut(double matriz[][9], int linha, int inicio_l, int inicio_c, int ar
 		matriz[inicio_l][i] = c;
 	}
 	
-	//--------Realizar-o-MÈtodo-de-Gauss--------------//
+	//--------Realizar-o-M√©todo-de-Gauss--------------//
     i = armazenador;
 	while(i<linha){
 		if(matriz[i][inicio_c]!=0){
 			constante = matriz[i][inicio_c]/pivo;
-			printf("\n|O valor da constante È: %lf|\n\n",constante);
+			printf("\n|O valor da constante √©: %lf|\n\n",constante);
 			for(contador=inicio_c;contador<9;contador++){
 				matriz[i][contador] = matriz[i][contador] - (((matriz[inicio_l][contador]))*(constante));
 			}
@@ -59,7 +59,7 @@ int main(){
 	//--------------Matriz------------------//
 	int i = 8; //----------------> Oito Linhas
 	int j = 9; //----------------> Nove Colunas
-	double matriz[i][j]; //---------> Matriz que Iremos realizar o MÈtodo de Gauss com Pivotamento Parcial
+	double matriz[i][j]; //---------> Matriz que Iremos realizar o M√©todo de Gauss com Pivotamento Parcial
 	setlocale(LC_ALL,"");
 	//--------------------------------------//
 	
@@ -73,9 +73,9 @@ int main(){
   	//------------------------------------//
   	
   	
-  	//--------Leitura-de-Vari·veis-----------//
-  	int cont;    //---------------> Contador para LaÁo de RepetiÁ„o
-  	int cont2;  //----------------> Contador para LaÁo de RepetiÁ„o
+  	//--------Leitura-de-Vari√°veis-----------//
+  	int cont;    //---------------> Contador para La√ßo de Repeti√ß√£o
+  	int cont2;  //----------------> Contador para La√ßo de Repeti√ß√£o
   	rewind(file);
   	//---------------------------------------//
   	
