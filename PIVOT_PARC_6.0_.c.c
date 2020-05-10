@@ -9,13 +9,13 @@
 #include<locale.h>
 
 
-//------------Fazer-SubtituiÁ„o-de-Linhas/Encontrar-Pivo--------------//
+//------------Fazer-Subtitui√ß√£o-de-Linhas/Encontrar-Pivo--------------//
 void substitut(int coluna, double matriz[][coluna], int linha, int inicio_l, int inicio_c, int armazenador){
-	double c;                  //------------> Carga ˙til
-	int i;                 //-------------> Contador de AuxÌlio
+	double c;                  //------------> Carga √∫til
+	int i;                 //-------------> Contador de Aux√≠lio
 	double constante;      //------------->  Constante da Linha = Linha_de_Baixo/pivo
 	int contador;        //---------------> Contador de Coluna
-	int som=inicio_l;        //--------------->  Somador ˙til para encontrar linha
+	int som=inicio_l;        //--------------->  Somador √∫til para encontrar linha
 	double pivo = 0;
 	
 	//-------------Encontra-o-Pivo------------------//
@@ -37,7 +37,7 @@ void substitut(int coluna, double matriz[][coluna], int linha, int inicio_l, int
 		matriz[inicio_l][i] = c;
 	}
 	
-	//--------Realizar-o-MÈtodo-de-Gauss--------------//
+	//--------Realizar-o-M√©todo-de-Gauss--------------//
     i = armazenador;
 	while(i<linha){
 		if(matriz[i][inicio_c]!=0){
@@ -54,18 +54,18 @@ void substitut(int coluna, double matriz[][coluna], int linha, int inicio_l, int
 
 //------------------Obter-Resultados------------------------------------------------//
 void coef(int coluna, int linha, double matriz[][coluna]){
-	coluna--; //------->Ajustes para encaixar na Matriz Computacional (inicia contagem no 0)<--- coluna inicia em 8 (0 atÈ 8)
-	linha--;  //------->Ajustes para encaixar na Matriz Computacional (inicia contagem no 0)<--- linha inicia em 7 (0 atÈ 7)
+	coluna--; //------->Ajustes para encaixar na Matriz Computacional (inicia contagem no 0)<--- coluna inicia em 8 (0 at√© 8)
+	linha--;  //------->Ajustes para encaixar na Matriz Computacional (inicia contagem no 0)<--- linha inicia em 7 (0 at√© 7)
 	int i;  //--------->Contador auxiliar
-	int dig = coluna-1; //--------->Dig representa o valor da coluna que ir· decrescer para auxiliar na localizaÁ„o da diagonal
- 	int dig2 = linha; //--------->Dig2 representa o valor da coluna que ir· decrescer para auxiliar na localizaÁ„o da diagonal
+	int dig = coluna-1; //--------->Dig representa o valor da coluna que ir√° decrescer para auxiliar na localiza√ß√£o da diagonal
+ 	int dig2 = linha; //--------->Dig2 representa o valor da coluna que ir√° decrescer para auxiliar na localiza√ß√£o da diagonal
 	int cont = linha; //--------->Faz a contagem para o vetor resultado
-	double resultado[linha]; //--------> Vetor com os valores de cada equaÁ„o
+	double resultado[linha]; //--------> Vetor com os valores de cada equa√ß√£o
 	int contador = coluna-1; 
 	
-	//Inicia nossas iteraÁıes:
+	//Inicia nossas itera√ß√µes:
 	for(i = linha; i>=0; i--){
-		//Realiza as inversıes de lados das constantes:
+		//Realiza as invers√µes de lados das constantes:
 		while(contador>dig){
 			if(dig == 0){
 				matriz[dig2][coluna] = matriz[dig2][coluna] - (matriz[dig2][contador]*resultado[cont]);
@@ -82,7 +82,7 @@ void coef(int coluna, int linha, double matriz[][coluna]){
 		}
 		contador = coluna-1;
 		cont = linha;
-		//Realiza o c·lculo do coeficiente especÌfico da equaÁ„o:
+		//Realiza o c√°lculo do coeficiente espec√≠fico da equa√ß√£o:
 		if(matriz[dig2][dig]!=0){
 			matriz[dig2][coluna] = (matriz[dig2][coluna])/(matriz[dig2][dig]);
 			resultado[dig2]=matriz[dig2][coluna];
@@ -105,7 +105,7 @@ int main(){
 	//--------------Matriz------------------//
 	int i = 8; //----------------> Oito Linhas
 	int j = 9; //----------------> Nove Colunas
-	double matriz[i][j]; //---------> Matriz que Iremos realizar o MÈtodo de Gauss com Pivotamento Parcial
+	double matriz[i][j]; //---------> Matriz que Iremos realizar o M√©todo de Gauss com Pivotamento Parcial
 	setlocale(LC_ALL,"");
 	//--------------------------------------//
 	
@@ -119,9 +119,9 @@ int main(){
   	//------------------------------------//
   	
   	
-  	//--------Leitura-de-Vari·veis-----------//
-  	int cont;    //---------------> Contador para LaÁo de RepetiÁ„o
-  	int cont2;  //----------------> Contador para LaÁo de RepetiÁ„o
+  	//--------Leitura-de-Vari√°veis-----------//
+  	int cont;    //---------------> Contador para La√ßo de Repeti√ß√£o
+  	int cont2;  //----------------> Contador para La√ßo de Repeti√ß√£o
   	rewind(file);
   	//---------------------------------------//
   	
