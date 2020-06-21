@@ -1,3 +1,7 @@
+//Bruno Rossi Carmo
+//Gabriel de Campos
+//Carlos Eduardos
+
 #include<stdio.h>
 #include<math.h>
 #include <stdlib.h>
@@ -15,8 +19,6 @@ void recebe_valores(int quantidade, double *var)
   }
 }
 //---------------------------------------------------------//
-
-
 //-----------------Plotagem-----------------//
 void plot_2(double *x, double *y)
 {   ScatterPlotSeries *series = GetDefaultScatterPlotSeriesSettings();
@@ -43,25 +45,11 @@ void plot_2(double *x, double *y)
 	settings->scatterPlotSeries = s;
 	settings->scatterPlotSeriesLength = 1;
 	RGBABitmapImageReference *canvasReference = CreateRGBABitmapImageReference();
-	DrawScatterPlotFromSettings(canvasReference, settings);
 	//Conversão para ARQUIVO PNG://
 	size_t length;
 	double *pngdata = ConvertToPNG(&length, canvasReference->image);
 	WriteToFile(pngdata, length, "Grafico_Func.png");
 	DeleteImage(canvasReference->image);
-	return;
-}
-//-------------------------------------------//
-
-
-//-----------------Somatorio-----------------//
-double somatorio(int quantidade, double *var)
-{ int i;
-  double somador = 0;
-  for(i=0; i<quantidade; i++)
-  { somador = var[i] + somador;
-  }
-  return somador;                //Ira retor as somas.
 }
 //-------------------------------------------//
 //----------------------------------------------------------------------------------------------------------//
@@ -79,17 +67,21 @@ int main()
    double fx[quantidade];  // Valores de F(X) mostrados na tabela.
    double var[quantidade]; // Valores da variável em contraste com o F(X) na tabela. 
 //----------------------------------------//  
-   
+
 //----------------Inserir Variavel----------------//
+   printf("\nInsira os valores de D:\n");
    recebe_valores(quantidade,var); // Ira receber os valores do parâmetro da tabela.
    int i; 
+   //Print:
    for(i=0; i<quantidade; i++)    // Atribui os valores.
    { printf("\n [%.2lf]", var[i]);
    }
 //-----------------------------------------------//
 
 //----------------Inserir Função-----------------//
+   printf("\nInsira os valores de F(x):\n");
    recebe_valores(quantidade,fx); // Ira receber os valores de F(X) da tabela.
+   //Print:
    for(i=0; i<quantidade; i++)
    { printf("\n [%.2lf]", fx[i]); // Atribui os valores.
    }
@@ -128,30 +120,7 @@ int main()
 	double *pngdata = ConvertToPNG(&length, canvasReference->image);
 	WriteToFile(pngdata, length, "Grafico.png");
 	DeleteImage(canvasReference->image);
-	
 //----------------------------------------//
-
-//---------------Função Var = 1/sqrt(d)---------------//
-   //Este Campo deve ser modificado de acordo com a função de g2(x).
-   double var_2[quantidade];
-   for(i=0; i<quantidade;i++)
-   { var_2[i] = 1/sqrt(var[i]);
-   }
-//----------------------------------------------------//
-
-//----------------Função Conjunta----------------//
-   double conjunt[quantidade];
-   for(i=0;i<quantidade;i++)
-   { conjunt[i] = var_2[i]*fx[i];
-   }
-//----------------------------------------------//
-
-//---------------Função Var = 1/d ---------------//
-   double quadrados[quantidade];
-   for(i=0; i<quantidade; i++)
-   { quadrados[i] = 1/var[i];
-   }
-//----------------------------------------------//
 
 //----------------Observações----------------//
 //Estamos analisando a seguinte equação: F(x) = z + k*(1/sqrt(d))//
@@ -162,23 +131,24 @@ int main()
 //------------------------------------------//
 
 //-----------------Somatorios-----------------//
-   double sum_var;
-   double sum_fx;
-   double sum_var_fx;
-   double sum_var_quadr;
-   sum_var = somatorio(quantidade,var_2);
-   sum_fx = somatorio(quantidade,fx);
-   sum_var_fx = somatorio(quantidade,conjunt);
-   sum_var_quadr = somatorio(quantidade, quadrados);
-//-------------------------------------------//
-
-//-----------------Passar Para Matriz-----------------//
-   double A1[2][2] = {sum_fx, sum_var, sum_var_fx, sum_var_quadr};   //Matriz A1
-   double A2[2][2] = {quantidade,sum_fx,sum_var,sum_var_fx};  //Matriz A2
-   double A[2][2] = {quantidade, sum_var, sum_var, sum_var_quadr}; //Matriz A.
-   //Como estamos fazendo matrizes para resolução de um sistema de equações pela regra de Cramer+
-   //então, temos que fazer A1 e A2 e calcular suas determinantes.
+   double sum_var       = 0;
+   double sum_fx        = 0;
+   double sum_var_fx    = 0;
+   double sum_var_quadr = 0;
    
+   for(i=0;i<quantidade;i++)
+   { sum_var = sum_var + 1/sqrt(var[i]);              //Somatorio de 1/sqrt(d).
+     sum_fx = sum_fx + fx[i];                         //Somatorio de f(x).
+     sum_var_quadr = sum_var_quadr + 1/var[i];        //Somatorio de 1/d.
+     sum_var_fx = sum_var_fx + 1/sqrt(var[i])*fx[i];  //Somatorio de 1/sqrt(d)*f(x).
+   }
+   
+   //sum_var            //<g2,g1> ou <g1,g2>
+   //sum_fx             //<g1,fx>
+   //sum_var_fx         //<g2,fx>
+   //sum_var_quadr      //<g2,g2> 
+
+//-----------------Resolver e Encontrar Equação-----------------// 
    // [ <g1,fx> | <g1,g2> ]  
    // [ <g2,fx> | <g2,g2> ]  // Matriz A1.
    
@@ -193,15 +163,15 @@ int main()
    
   double a1;
   double a2;
-  a1 = ((A1[0][0]*A1[1][1]) - (A1[1][0]*A1[0][1]))/((A[0][0]*A[1][1])-(A[1][0]*A[0][1]));
-  a2 = ((A2[0][0]*A2[1][1]) - (A2[1][0]*A2[0][1]))/((A[0][0]*A[1][1])-(A[1][0]*A[0][1]));
+  a1 = ((sum_fx*sum_var_quadr) - (sum_var*sum_var_fx))/((quantidade*sum_var_quadr)-(sum_var*sum_var));
+  a2 = ((quantidade*sum_var_fx) - (sum_fx*sum_var))/((quantidade*sum_var_quadr)-(sum_var*sum_var));
   printf("\nObservamos com isso que: F(n) = %.2lf + %.2lf * 1/sqrt(n)\n", a1, a2);
 //----------------------------------------------------//
 
 //------------------Resultado Tensao-------------------//
   double d = 0.05;
   double tensao = a1 + a2*(1/sqrt(0.05));
-  printf("A tensao com Grão de 0,05 equivale em: %.4lf",tensao);
+  printf("A tensao com Grao de 0,05 equivale em: %.4lf",tensao);
   //--------------------------------------------------//
   
 //-----------------Plotagem-----------------//
@@ -218,5 +188,19 @@ int main()
   
   //Iremos agora plotar o gráfico individual:
   plot_2(resultado_x, resultado_fx);
+  
+//-----------------Calcular Ruido-----------------//
+  //R(x) = [F(X) - G(X)]^2
+  double gx[quantidade];
+  double ruido = 0;
+  for(i=0;i<quantidade;i++)
+  { gx[i] = a1 + a2*(1/sqrt(var[i]));
+    printf("\n [%.2lf]",ruido);
+    ruido = ((fx[i] - gx[i])*(fx[i] - gx[i])) + ruido;
+  }
+  printf("\n [%.2lf]",ruido);
+  printf("\nO R(X) apresentado equivale a %.4lf\n",ruido);
+//-----------------------------------------------//
+//----------------------------------------------------------------Parte_1_Finalizada----------------------------------------------------------------//
   return 0;
 }
