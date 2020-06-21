@@ -9,7 +9,7 @@
 #include "pbPlots.h"      //--->Plotar o Grafico.
 #include "supportLib.h"   //--->Plotar o Grafico.
 
-//--------------------------------------------------FunÁıes--------------------------------------------------//
+//--------------------------------------------------Fun√ß√µes--------------------------------------------------//
 //----------------Valores-Para-Montar-Vetor----------------//
 void recebe_valores(int quantidade, double *var)
 { int i;
@@ -45,7 +45,7 @@ void plot_2(double *x, double *y)
 	settings->scatterPlotSeries = s;
 	settings->scatterPlotSeriesLength = 1;
 	RGBABitmapImageReference *canvasReference = CreateRGBABitmapImageReference();
-	//Convers„o para ARQUIVO PNG://
+	//Convers√£o para ARQUIVO PNG://
 	size_t length;
 	double *pngdata = ConvertToPNG(&length, canvasReference->image);
 	WriteToFile(pngdata, length, "Grafico_Func.png");
@@ -65,12 +65,12 @@ int main()
    printf("Qual a quantidade de elementos da Tabela? ");
    scanf("%d", &quantidade);
    double fx[quantidade];  // Valores de F(X) mostrados na tabela.
-   double var[quantidade]; // Valores da vari·vel em contraste com o F(X) na tabela. 
+   double var[quantidade]; // Valores da vari√°vel em contraste com o F(X) na tabela. 
 //----------------------------------------//  
 
 //----------------Inserir Variavel----------------//
    printf("\nInsira os valores de D:\n");
-   recebe_valores(quantidade,var); // Ira receber os valores do par‚metro da tabela.
+   recebe_valores(quantidade,var); // Ira receber os valores do par√¢metro da tabela.
    int i; 
    //Print:
    for(i=0; i<quantidade; i++)    // Atribui os valores.
@@ -78,7 +78,7 @@ int main()
    }
 //-----------------------------------------------//
 
-//----------------Inserir FunÁ„o-----------------//
+//----------------Inserir Fun√ß√£o-----------------//
    printf("\nInsira os valores de F(x):\n");
    recebe_valores(quantidade,fx); // Ira receber os valores de F(X) da tabela.
    //Print:
@@ -89,7 +89,7 @@ int main()
 
 //----------------Plotagem----------------//  
 
-    //Plotagem do Gr·fico de Marcador Discreto//
+    //Plotagem do Gr√°fico de Marcador Discreto//
     ScatterPlotSeries *series = GetDefaultScatterPlotSeriesSettings();
 	series->xs = var;
 	series->xsLength = 10;
@@ -115,15 +115,15 @@ int main()
 	settings->scatterPlotSeriesLength = 1;
 	RGBABitmapImageReference *canvasReference = CreateRGBABitmapImageReference();
 	DrawScatterPlotFromSettings(canvasReference, settings);
-	//Convers„o para ARQUIVO PNG://
+	//Convers√£o para ARQUIVO PNG://
 	size_t length;
 	double *pngdata = ConvertToPNG(&length, canvasReference->image);
 	WriteToFile(pngdata, length, "Grafico.png");
 	DeleteImage(canvasReference->image);
 //----------------------------------------//
 
-//----------------ObservaÁıes----------------//
-//Estamos analisando a seguinte equaÁ„o: F(x) = z + k*(1/sqrt(d))//
+//----------------Observa√ß√µes----------------//
+//Estamos analisando a seguinte equa√ß√£o: F(x) = z + k*(1/sqrt(d))//
 //g1(X) = 1.
 //g2(x) = 1/sqrt(d)
 //a1 = z
@@ -148,7 +148,7 @@ int main()
    //sum_var_fx         //<g2,fx>
    //sum_var_quadr      //<g2,g2> 
 
-//-----------------Resolver e Encontrar EquaÁ„o-----------------// 
+//-----------------Resolver e Encontrar Equa√ß√£o-----------------// 
    // [ <g1,fx> | <g1,g2> ]  
    // [ <g2,fx> | <g2,g2> ]  // Matriz A1.
    
@@ -175,7 +175,7 @@ int main()
   //--------------------------------------------------//
   
 //-----------------Plotagem-----------------//
-  //Primeiro iremos inserir valores para serem adicionados nos gr·ficos:
+  //Primeiro iremos inserir valores para serem adicionados nos gr√°ficos:
   j = 0;
   double v;
   double resultado_fx[1050];
@@ -186,7 +186,7 @@ int main()
      j++;
   }
   
-  //Iremos agora plotar o gr·fico individual:
+  //Iremos agora plotar o gr√°fico individual:
   plot_2(resultado_x, resultado_fx);
   
 //-----------------Calcular Ruido-----------------//
